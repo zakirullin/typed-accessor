@@ -122,7 +122,7 @@ namespace Zakirullin\Mess
      * @psalm-return array<string,mixed>|null
      *
      * @param mixed    $value
-     * @param callable $caster
+     * @param pure-callable(mixed) $caster
      * @return array|null
      */
     function toArrayOfStringToType($value, callable $caster): ?array
@@ -130,7 +130,7 @@ namespace Zakirullin\Mess
         if (!isArrayOfStringToMixed($value)) {
             return null;
         }
-
+        /** @var array<string, mixed> $value */
         $arrayOfStringToCasted = [];
         /**
          * @var string $key
@@ -182,7 +182,7 @@ namespace Zakirullin\Mess
      * @psalm-pure
      *
      * @param mixed    $value
-     * @param callable $typeChecker
+     * @param pure-callable(mixed): bool $typeChecker
      * @return bool
      */
     function isListOfType($value, callable $typeChecker): bool
@@ -233,7 +233,7 @@ namespace Zakirullin\Mess
      * @psalm-pure
      *
      * @param mixed    $value
-     * @param callable $isType
+     * @param pure-callable(mixed): bool $isType
      * @return bool
      */
     function isArrayOfStringToType($value, callable $isType)
